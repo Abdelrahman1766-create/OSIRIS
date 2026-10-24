@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-royal_essence}
+      POSTGRES_USER: ${POSTGRES_USER:-royal_essence}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in the root .env file}
+    ports:
+      - "5432:5432"
+    volumes:
+      - royal_essence_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-royal_essence} -d ${POSTGRES_DB:-royal_essence}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  royal_essence_pgdata:

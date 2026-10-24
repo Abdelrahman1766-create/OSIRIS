@@ -1,0 +1,82 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Logs and temporary files
+logs/
+**/logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.tmp
+*.temp
+*.bak
+*.cache
+.cache/
+.tmp/
+tmp/
+temp/
+.codex-output/
+artifacts/
+
+# Build and test outputs
+dist/
+**/dist/
+dist-ssr/
+build/
+**/build/
+coverage/
+.nyc_output/
+.vite/
+*.tsbuildinfo
+
+# Local environment and secrets
+*.local
+.env
+.env.*
+!.env.example
+!**/.env.example
+!**/.env.*.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+id_rsa*
+id_ed25519*
+credentials.json
+service-account*.json
+secrets.json
+
+# Runtime uploads and local data
+server/uploads/
+uploads/
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+docker-data/
+.docker-data/
+docker/volumes/
+postgres-data/
+pgdata/
+
+# Local QA and browser state
+qa/*.png
+qa/chrome-profile/
+qa/edge-profile/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

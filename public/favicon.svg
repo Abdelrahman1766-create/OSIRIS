@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f5dc8b"/>
+      <stop offset=".55" stop-color="#d4af37"/>
+      <stop offset="1" stop-color="#94751e"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="13" fill="#050505"/>
+  <circle cx="32" cy="32" r="24" fill="none" stroke="url(#gold)" stroke-width="1.5"/>
+  <circle cx="32" cy="32" r="19" fill="none" stroke="#d4af37" stroke-opacity=".3" stroke-width=".7"/>
+  <text x="32" y="44" text-anchor="middle" font-family="Georgia,serif" font-size="38" fill="url(#gold)">O</text>
+</svg>

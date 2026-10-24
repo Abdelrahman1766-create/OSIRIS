@@ -1,0 +1,98 @@
+.fragrance-inquiry {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(212,175,55,.24);
+  background:
+    linear-gradient(110deg,rgba(212,175,55,.075),transparent 31%,rgba(212,175,55,.045) 76%,transparent),
+    #0b0a08;
+}
+.fragrance-inquiry::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg,transparent,rgba(255,224,142,.035),transparent);
+}
+.fragrance-inquiry-glow {
+  position: absolute;
+  inset-block: -95px;
+  inset-inline-start: -80px;
+  width: 310px;
+  border-radius: 50%;
+  background: radial-gradient(circle,rgba(212,175,55,.14),transparent 69%);
+  pointer-events: none;
+}
+.fragrance-inquiry-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0,1fr) auto;
+  align-items: center;
+  gap: 22px;
+  min-height: 154px;
+  padding-block: 23px;
+}
+.fragrance-inquiry-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border: 1px solid rgba(212,175,55,.46);
+  border-radius: 50%;
+  color: var(--gold-bright);
+  background: rgba(5,5,5,.58);
+  box-shadow: 0 0 28px rgba(212,175,55,.09), inset 0 0 18px rgba(212,175,55,.05);
+}
+.fragrance-inquiry-icon svg:last-child { position: absolute; top: 6px; inset-inline-end: 4px; color: #f2d57c; }
+.fragrance-inquiry-copy { max-width: 690px; }
+.fragrance-inquiry-copy h2 { margin: 0 0 7px; font-size: clamp(1.65rem,2.1vw,2.25rem); line-height: 1.05; }
+.fragrance-inquiry-copy p { margin: 0; color: #bdb5a6; font-size: .79rem; line-height: 1.62; }
+.fragrance-inquiry-copy strong { display: block; margin-top: 7px; color: #e0cb8b; font-size: .75rem; font-weight: 500; line-height: 1.55; }
+.fragrance-inquiry-actions { display: grid; grid-template-columns: repeat(3,minmax(104px,1fr)); gap: 8px; }
+.fragrance-inquiry-actions a,
+.fragrance-inquiry-actions button,
+.fragrance-inquiry-actions > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 45px;
+  min-width: 0;
+  padding: 9px 12px;
+  border: 1px solid rgba(212,175,55,.3);
+  color: var(--ivory);
+  background: rgba(4,4,4,.58);
+  font: inherit;
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .025em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform .2s,border-color .2s,color .2s,background .2s;
+}
+.fragrance-inquiry-actions a:hover,
+.fragrance-inquiry-actions button:hover { transform: translateY(-2px); border-color: var(--gold); color: var(--gold-bright); background: rgba(212,175,55,.08); }
+.fragrance-inquiry-actions svg { flex: none; color: var(--gold); }
+.fragrance-inquiry-actions .is-disabled { opacity: .42; cursor: not-allowed; }
+.fragrance-inquiry-notice { grid-column: 2 / -1; margin: -10px 0 1px; color: var(--gold-bright); font-size: .72rem; line-height: 1.5; }
+html[dir="rtl"] .fragrance-inquiry-actions a,
+html[dir="rtl"] .fragrance-inquiry-actions button { letter-spacing: 0; }
+
+@media (max-width: 1020px) {
+  .fragrance-inquiry-inner { grid-template-columns: auto minmax(0,1fr); gap: 17px; padding-block: 21px; }
+  .fragrance-inquiry-actions { grid-column: 1 / -1; width: 100%; }
+  .fragrance-inquiry-notice { grid-column: 1 / -1; margin-top: -5px; }
+}
+@media (max-width: 520px) {
+  .fragrance-inquiry-inner { gap: 13px; padding-block: 18px 20px; }
+  .fragrance-inquiry-icon { width: 44px; height: 44px; }
+  .fragrance-inquiry-icon > svg:first-child { width: 19px; }
+  .fragrance-inquiry-copy h2 { font-size: clamp(1.35rem,6.8vw,1.8rem); }
+  .fragrance-inquiry-copy p { font-size: .7rem; line-height: 1.52; }
+  .fragrance-inquiry-copy strong { font-size: .68rem; }
+  .fragrance-inquiry-actions { gap: 6px; }
+  .fragrance-inquiry-actions a,
+  .fragrance-inquiry-actions button,
+  .fragrance-inquiry-actions > span { min-height: 43px; padding-inline: 5px; font-size: .61rem; }
+  .fragrance-inquiry-actions svg { width: 15px; }
+}
