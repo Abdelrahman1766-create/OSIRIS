@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import { rateLimit } from 'express-rate-limit';
+import { existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { adminRouter } from './admin.js';
 import { aiRouter } from './ai.js';
 import { authRouter } from './auth.js';
@@ -15,7 +17,15 @@ import { supplierRouter, uploadsDir } from './supplier.js';
 export const app = express();
 app.disable('x-powered-by');
 app.set('trust proxy', 1);
-app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: 'cross-origin' },
+  contentSecurityPolicy: {
+    directives: {
+      'style-src': ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
+      'font-src': ["'self'", 'data:', 'https://fonts.gstatic.com'],
+    },
+  },
+}));
 app.use(cors({
   origin(origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) callback(null, true);
@@ -33,5 +43,20 @@ app.use('/api/v1', customerRouter);
 app.use('/api/v1/supplier', supplierRouter);
 app.use('/api/v1/admin', adminRouter);
 app.use('/api/v1/ai', aiRouter);
+
+// Production deployments expose the built storefront and API from one origin.
+// The directory resolves correctly from server/dist/app.js after compilation.
+const storefrontDir = fileURLToPath(new URL('../../dist/', import.meta.url));
+if (existsSync(storefrontDir)) {
+  app.use(express.static(storefrontDir, { maxAge: '1h' }));
+  app.use((req, res, next) => {
+    if (req.method !== 'GET' || req.path.startsWith('/api/') || req.path.startsWith('/uploads/')) {
+      next();
+      return;
+    }
+    res.sendFile('index.html', { root: storefrontDir });
+  });
+}
+
 app.use(notFound);
 app.use(errorHandler);
